@@ -19,7 +19,8 @@ public class HomeScreen extends JFrame implements ActionListener
 	public HomeScreen()
 	{
 		setTitle("IMovie - Encontre o filme que você gosta.");
-		setSize(1100, 400);
+		setSize(900, 400);
+		setBackground(Color.lightGray);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initializeLayout();

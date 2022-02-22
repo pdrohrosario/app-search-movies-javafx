@@ -14,7 +14,7 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 {
 
 	JLabel titleMovie = new JLabel("");
-	JLabel sinopseMovie = new JLabel("");
+	JTextArea sinopseMovie = new JTextArea("");
 	JLabel releasedMovie = new JLabel("");
 	JButton backButton = new JButton("");
 	JLabel poster = new JLabel();
@@ -24,7 +24,7 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 	public MovieScreen(String searchMovie)
 	{
 		setTitle("IMovie - Encontre o filme que você gosta.");
-		setSize(1500, 700);
+		setSize(900, 700);
 		setVisible(true);
 		MovieScreenController.getInstance().setListener(this);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -45,6 +45,10 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 		poster.setAlignmentX(LEFT_ALIGNMENT);
 		backButton.setAlignmentX(CENTER_ALIGNMENT);
 		backButton.setText("Back to Home");
+		sinopseMovie.setMaximumSize(new Dimension(1100, 205));
+		sinopseMovie.setAlignmentX(LEFT_ALIGNMENT);
+		sinopseMovie.setLineWrap(true);
+		sinopseMovie.setEditable(false);
 
 		warning = configurateWarning("Loading",45,CENTER_ALIGNMENT);
 
