@@ -1,8 +1,8 @@
 package request;
 
-import netscape.javascript.JSObject;
+import java.awt.Image;
 
 public interface OmdbListener
 {
-	void movieInfoDataAllReady(String movieInfoData);
+	void movieDataReady(String movieData, Image poster);
 }
