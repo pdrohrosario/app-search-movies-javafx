@@ -1,11 +1,12 @@
 package view;
 
+import static utils.MovieUtils.configurateWarning;
+
 import controllers.MovieScreenController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.text.html.ImageView;
 import movie.Movie;
 import movie.MovieListener;
 
@@ -15,14 +16,15 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 	JLabel titleMovie = new JLabel("");
 	JLabel sinopseMovie = new JLabel("");
 	JLabel releasedMovie = new JLabel("");
-	JButton backButton = new JButton("Back to Home");
+	JButton backButton = new JButton("");
 	JLabel poster = new JLabel();
 	JLabel warning = new JLabel("");
 	private String searchMovie;
 
-	public MovieScreen(String searchMovie){
+	public MovieScreen(String searchMovie)
+	{
 		setTitle("IMovie - Encontre o filme que você gosta.");
-		setSize(1100,600);
+		setSize(1100, 600);
 		setVisible(true);
 		MovieScreenController.getInstance().setListener(this);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,17 +41,16 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 		jp.setAlignmentX(Component.CENTER_ALIGNMENT);
 		jp.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-		poster.setMaximumSize(new Dimension(1400,500));
+		poster.setMaximumSize(new Dimension(1400, 500));
 		poster.setAlignmentX(LEFT_ALIGNMENT);
-		sinopseMovie.setMaximumSize(new Dimension(1100,55));
+		sinopseMovie.setMaximumSize(new Dimension(1100, 55));
 		backButton.setAlignmentX(CENTER_ALIGNMENT);
 
-		jp.add(backButton);
+		backButton.setText("Back to Home");
 
-		warning.setAlignmentX(CENTER_ALIGNMENT);
-		warning.setText("=Loading=");
-		warning.setFont(new Font("Serif",Font.BOLD,45));
-		warning.setAlignmentY(CENTER_ALIGNMENT);
+		warning = configurateWarning("Loading",45,CENTER_ALIGNMENT);
+
+		jp.add(backButton);
 
 		add(warning);
 		add(poster);
@@ -69,12 +70,13 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 		{
 			if (e.getActionCommand().equalsIgnoreCase("Back to Home"))
 			{
-				String nameMovie = titleMovie.getText();
+				new HomeScreen();
 				setVisible(false);
-				new HomeScreen(nameMovie);
+
 			}
 		}
-		catch (Exception exc){
+		catch (Exception exc)
+		{
 			exc.printStackTrace();
 		}
 	}
@@ -82,11 +84,17 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 	@Override
 	public void infoMovieLoaded(Movie movie)
 	{
-		remove(warning);
-		titleMovie.setText("Title: \n" + movie.title);
-		sinopseMovie.setText("Plot: \n"+ movie.sinopse);
-		releasedMovie.setText("Released: \n" + movie.released);
-		poster.setIcon(new ImageIcon(movie.poster));
-		poster.setSize(200,300);
+
+		if (movie.title != null){
+			remove(warning);
+			titleMovie.setText("Title: \n" + movie.title);
+			sinopseMovie.setText("Plot: \n" + movie.sinopse);
+			releasedMovie.setText("Released: \n" + movie.released);
+			poster.setIcon(new ImageIcon(movie.poster));
+			poster.setSize(200, 300);
+		}
+		else{
+			warning.setText("Filme não encontrado");
+		}
 	}
 }

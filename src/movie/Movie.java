@@ -2,7 +2,8 @@ package movie;
 
 import java.awt.Image;
 
-public class Movie {
+public class Movie
+{
 	public String title;
 	public String sinopse;
 	public String released;
@@ -16,6 +17,7 @@ public class Movie {
 		this.poster = poster;
 	}
 
-	public Movie(){
+	public Movie()
+	{
 	}
 }

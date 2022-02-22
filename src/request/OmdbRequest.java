@@ -14,32 +14,35 @@ import org.json.JSONObject;
 public class OmdbRequest
 {
 	public static final String SEARCH_URL = "http://www.omdbapi.com/?t=TITLE&apikey=648cdebe";
+	public static final String IMAGE_NOT_FOUND = "https://bitsofco.de/content/images/2018/12/broken-1.png";
 
 	private OmdbListener listener;
 
-	public OmdbRequest(){
+	public OmdbRequest()
+	{
 		// TODO document why this constructor is empty
 	}
 
 	public void searchMovieByTitle(String searchMovie)
 	{
-		if(searchMovie != null)
+		if (searchMovie != null)
 		{
-			String requestUrl = SEARCH_URL.replaceAll("TITLE",searchMovie);
+			String requestUrl = SEARCH_URL.replaceAll("TITLE", searchMovie);
 			sendGetRequest(requestUrl);
 		}
 	}
 
 	public static HttpURLConnection connectionOmdb(String urlPassed) throws IOException
 	{
-		HttpURLConnection con= null;
+		HttpURLConnection con = null;
 		URL url = new URL(urlPassed);
 		con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		return con;
 	}
 
-	public void sendGetRequest(String urlPassed){
+	public void sendGetRequest(String urlPassed)
+	{
 
 		Thread t = new Thread()
 		{
@@ -52,8 +55,10 @@ public class OmdbRequest
 				{
 					HttpURLConnection connection = connectionOmdb(urlPassed);
 					dataMovie = takeInfoOfMovieToOmdb(connection);
-					poster = takePosterMovieToOmdb(getURLPoster(dataMovie));
-					listener.movieDataReady(dataMovie,poster);
+					if(dataMovie.contains("Poster")){
+						poster = takePosterMovieToOmdb(getURLPoster(dataMovie));
+					}
+					listener.movieDataReady(dataMovie, poster);
 				}
 				catch (Exception e)
 				{
