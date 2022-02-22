@@ -22,7 +22,7 @@ public class HomeScreen extends JFrame implements ActionListener
 	public HomeScreen()
 	{
 		setTitle("IMovie - Encontre o filme que você gosta.");
-		setSize(600, 600);
+		setSize(1100, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initializeLayout();
 	}
@@ -30,7 +30,7 @@ public class HomeScreen extends JFrame implements ActionListener
 	public HomeScreen(String lastMovie)
 	{
 		setTitle("IMovie - Encontre o filme que você gosta.");
-		setSize(800, 600);
+		setSize(1100, 600);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initializeLayout();
@@ -47,7 +47,7 @@ public class HomeScreen extends JFrame implements ActionListener
 		jp.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		searchBar.setAlignmentX(LEFT_ALIGNMENT);
-		searchBar.setMaximumSize(new Dimension(700, 105));
+		searchBar.setMaximumSize(new Dimension(1100, 105));
 
 		searchButton.setAlignmentX(LEFT_ALIGNMENT);
 		searchButton.setSize(new Dimension(50, 50));
