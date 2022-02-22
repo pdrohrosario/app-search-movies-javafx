@@ -1,7 +1,7 @@
 package view;
 
+import java.awt.*;
 import utils.MovieUtils;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -33,8 +33,14 @@ public class HomeScreen extends JFrame implements ActionListener
 	private void initializeLayout()
 	{
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+
+		JPanel jp = new JPanel();
+		jp.setLayout(new FlowLayout());
+		jp.setAlignmentX(Component.LEFT_ALIGNMENT);
+		jp.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+
 		searchBar.setAlignmentX(LEFT_ALIGNMENT);
-		searchBar.setMaximumSize(new Dimension(700,25));
+		searchBar.setMaximumSize(new Dimension(700,45));
 
 		searchButton.setAlignmentX(LEFT_ALIGNMENT);
 		searchButton.setSize(new Dimension(50,50));
@@ -42,9 +48,11 @@ public class HomeScreen extends JFrame implements ActionListener
 		clearButton.setAlignmentX(LEFT_ALIGNMENT);
 		clearButton.setSize(new Dimension(50,50));
 
+		jp.add(searchButton);
+		jp.add(clearButton);
+
 		add(searchBar);
-		add(searchButton);
-		add(clearButton);
+		add(jp);
 
 		searchButton.setActionCommand("Search");
 		clearButton.setActionCommand("Clear");
