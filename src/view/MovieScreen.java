@@ -24,7 +24,7 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 	public MovieScreen(String searchMovie)
 	{
 		setTitle("IMovie - Encontre o filme que você gosta.");
-		setSize(1100, 600);
+		setSize(1500, 700);
 		setVisible(true);
 		MovieScreenController.getInstance().setListener(this);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,9 +43,7 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 
 		poster.setMaximumSize(new Dimension(1400, 500));
 		poster.setAlignmentX(LEFT_ALIGNMENT);
-		sinopseMovie.setMaximumSize(new Dimension(1100, 55));
 		backButton.setAlignmentX(CENTER_ALIGNMENT);
-
 		backButton.setText("Back to Home");
 
 		warning = configurateWarning("Loading",45,CENTER_ALIGNMENT);
@@ -87,9 +85,12 @@ public class MovieScreen extends JFrame implements ActionListener, MovieListener
 
 		if (movie.title != null){
 			remove(warning);
-			titleMovie.setText("Title: \n" + movie.title);
-			sinopseMovie.setText("Plot: \n" + movie.sinopse);
-			releasedMovie.setText("Released: \n" + movie.released);
+			titleMovie.setText("TITLE:\n\n" + movie.title);
+			titleMovie.setFont(new Font("arial", Font.LAYOUT_LEFT_TO_RIGHT, 18));
+			sinopseMovie.setText("PLOT:\n\n" + movie.sinopse);
+			sinopseMovie.setFont(new Font("arial", Font.LAYOUT_LEFT_TO_RIGHT, 18));
+			releasedMovie.setText("REALEASED: \n" + movie.released);
+			releasedMovie.setFont(new Font("arial", Font.LAYOUT_LEFT_TO_RIGHT, 18));
 			poster.setIcon(new ImageIcon(movie.poster));
 			poster.setSize(200, 300);
 		}
